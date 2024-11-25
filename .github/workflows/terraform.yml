@@ -76,19 +76,7 @@ jobs:
       uses: hashicorp/setup-terraform@v1
       with:
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-        
-    - name: Set and export environment variable
-      uses: myci-actions/export-env-var@1
-      with:
-       name: ARM_CLIENT_ID
-       value: ${{ secrets.AZURE_CLIENT_ID }}
-       name: ARM_CLIENT_SECRET
-       value: ${{ secrets.AZURE_CLIENT_SECRET }}
-       name: ARM_TENANT_ID
-       value: ${{ secrets.AZURE_TENANT_ID }}
-       name: ARM_SUBSCRIPTION_ID
-       value: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-       
+          
    
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
