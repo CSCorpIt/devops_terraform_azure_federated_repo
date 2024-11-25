@@ -1,4 +1,12 @@
 terraform {
+
+ required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 3.0" # Replace with the version you are using
+    }
+  }
+
   backend "azurerm" {
     key                  = "terra-state"
     resource_group_name  = "DefaultResourceGroup-EUS"
@@ -6,6 +14,9 @@ terraform {
     container_name       = "terradev"
   }
 }
+
+
+
 
 locals {
   solution_name       = var.solution_name
