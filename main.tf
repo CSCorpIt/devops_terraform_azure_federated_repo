@@ -3,9 +3,10 @@ terraform {
  required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 3.0" # Replace with the version you are using
+      version = "~> 3.0.2"
     }
   }
+  
 
   backend "azurerm" {
     key                  = "terra-state"
@@ -16,7 +17,9 @@ terraform {
 }
 
 
-
+provider "azurerm" {
+  features {}
+}
 
 locals {
   solution_name       = var.solution_name
