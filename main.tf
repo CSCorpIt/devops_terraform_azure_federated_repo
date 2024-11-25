@@ -1,9 +1,9 @@
 terraform {
   backend "azurerm" {
-    key                  = var.azurerm_key
-    resource_group_name  = var.azurerm_resource_group_name
-    storage_account_name = var.azurerm_storage_account_name
-    container_name       = var.azurerm_container_name
+    key                  = "terra-state"
+    resource_group_name  = "DefaultResourceGroup-EUS"
+    storage_account_name = "terraformstagh"
+    container_name       = terradev
   }
 }
 
