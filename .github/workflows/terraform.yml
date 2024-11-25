@@ -47,6 +47,7 @@ name: 'Terraform'
 on:
   push:
     branches: [ "master" ]
+  pull_request:
 env:
     ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
     ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
