@@ -3,7 +3,7 @@ terraform {
     key                  = "terra-state"
     resource_group_name  = "DefaultResourceGroup-EUS"
     storage_account_name = "terraformstagh"
-    container_name       = terradev
+    container_name       = "terradev"
   }
 }
 
