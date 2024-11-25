@@ -15,8 +15,6 @@ terraform {
     container_name       = "terradev"
   }
 
-  required_version = ">= 1.1.0"
-
 }
 
 
