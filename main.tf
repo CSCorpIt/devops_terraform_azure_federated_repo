@@ -14,6 +14,9 @@ terraform {
     storage_account_name = "terraformstagh"
     container_name       = "terradev"
   }
+
+  required_version = ">= 1.1.0"
+
 }
 
 
