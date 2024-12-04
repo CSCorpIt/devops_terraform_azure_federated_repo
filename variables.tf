@@ -14,7 +14,6 @@ variable "tenantID" {
 variable "subID" {
   description = "The deployment environment (e.g., dev, test, prod)."
   type        = string
-  default     = ""
 }
 
 variable "solution_name" {
