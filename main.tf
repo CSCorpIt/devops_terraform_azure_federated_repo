@@ -13,6 +13,7 @@ terraform {
     resource_group_name  = "DefaultResourceGroup-EUS"
     storage_account_name = "terraformstagh"
     container_name       = "terradev"
+    use_oidc             = true                                    # Can also be set via `ARM_USE_OIDC` environment variable.
   }
 
 }
