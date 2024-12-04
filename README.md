@@ -19,9 +19,3 @@ This repository provides a framework for managing Azure infrastructure using **T
 - `variables.tf`: Defines input variables for resource customization.
 - `outputs.tf`: Specifies outputs for resources created.
 - `.github/workflows/`: Contains CI/CD workflows for automating deployments.
-
-## Setup Instructions
-### Step 1: Clone the Repository
-```bash
-git clone https://github.com/CSCorpIt/devops_terraform_azure_federated_repo.git
-cd devops_terraform_azure_federated_repo
