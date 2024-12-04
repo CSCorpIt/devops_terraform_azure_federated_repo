@@ -34,12 +34,6 @@ provider "azurerm" {
   oidc_request_token = var.oidc_request_token
   oidc_request_url   = var.oidc_request_url
 
-  # for other generic OIDC providers, providing token directly
-  oidc_token = var.oidc_token
-
-  # for other generic OIDC providers, reading token from a file
-  oidc_token_file_path = var.oidc_token_file_path
-
   tenant_id = "0dcd7d6a-ba5c-44b2-8858-b89a508cc2fd"
 
   features {}
