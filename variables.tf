@@ -16,10 +16,6 @@ variable "subID" {
   type        = string
 }
 
-variable "solution_name" {
-  description = "The name of the solution or project."
-  type        = string
-}
 
 variable "region" {
   description = "The Azure region where resources will be deployed."
@@ -27,23 +23,6 @@ variable "region" {
   default     = "eastus2"
 }
 
-variable "environment" {
-  description = "The deployment environment (e.g., dev, test, prod)."
-  type        = string
-  default     = "dev"
-}
-
-variable "vnet_name" {
-  description = "The name of the virtual network."
-  type        = string
-  default     = "oddacoreeus2devvnet"
-}
-
-variable "vnet_rg" {
-  description = "The resource group name for the virtual network."
-  type        = string
-  default     = "ODDACORE-NETWORK-EUS2-DEV-RG"
-}
 
 variable "resource_group_name" {
   description = "The resource group name for the deployment."
