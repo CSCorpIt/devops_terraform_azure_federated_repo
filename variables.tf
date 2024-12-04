@@ -1,3 +1,18 @@
+variable "clientID" {
+  description = "The name of the solution or project."
+  type        = string
+}
+
+variable "tenantID" {
+  description = "The Azure region where resources will be deployed."
+  type        = string
+}
+
+variable "subID" {
+  description = "The deployment environment (e.g., dev, test, prod)."
+  type        = string
+}
+
 variable "solution_name" {
   description = "The name of the solution or project."
   type        = string
