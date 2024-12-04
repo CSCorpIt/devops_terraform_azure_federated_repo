@@ -16,6 +16,13 @@ This repository provides a framework for managing Azure infrastructure using **T
 
 ## Repository Structure
 - `main.tf`: Contains the core Terraform configuration for provisioning resources.
+  - **Example**: A resource group is created using the `azurerm_resource_group` resource.
+    ```hcl
+    resource "azurerm_resource_group" "rg" {
+      name     = var.resource_group_name
+      location = var.region
+    }
+    ```
 - `variables.tf`: Defines input variables for resource customization.
 - `outputs.tf`: Specifies outputs for resources created.
 - `.github/workflows/`: Contains CI/CD workflows for automating deployments.
