@@ -18,8 +18,26 @@ terraform {
 }
 
 
+
+
 provider "azurerm" {
   features {}
+
+  subscription_id = "19c90abf-d616-4f8c-b887-f0490119b05a"
+  client_id       = "f9ae38b8-7b03-4817-9039-39cb4774621d"
+  use_oidc        = true
+
+  # for GitHub Actions
+  oidc_request_token = var.oidc_request_token
+  oidc_request_url   = var.oidc_request_url
+
+  # for other generic OIDC providers, providing token directly
+  oidc_token = var.oidc_token
+
+  # for other generic OIDC providers, reading token from a file
+  oidc_token_file_path = var.oidc_token_file_path
+
+  tenant_id = "0dcd7d6a-ba5c-44b2-8858-b89a508cc2fd"
 }
 
 locals {
