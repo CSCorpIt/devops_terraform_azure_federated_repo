@@ -39,4 +39,16 @@ In GitHub, set the following **repository secrets** to provide the necessary env
 
 These secrets will be used by the GitHub Actions workflow to authenticate securely to Azure using federated identity.
 
+## References
+
+- [Terraform Documentation](https://www.terraform.io/docs/index.html)  
+  Official documentation for Terraform, including setup, configuration, and usage.
+  
+- [GitHub Actions Documentation](https://docs.github.com/en/actions)  
+  Comprehensive guide to creating and managing workflows with GitHub Actions.
+  
+- [Azure Federated Identity Documentation](https://learn.microsoft.com/en-us/azure/active-directory/develop/workload-identity-federation)  
+  Azure's guide on configuring federated identity for secure authentication.
+
+
 
