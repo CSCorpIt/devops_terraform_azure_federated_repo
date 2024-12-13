@@ -48,7 +48,7 @@ resource "azurerm_virtual_network" "vnet" {
 
 resource "azurerm_subnet" "subnet" {
   name                 = "internal"
-  resource_group_name  = zurerm_resource_group.resource_group.name
+  resource_group_name  = azurerm_resource_group.resource_group.name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = ["10.0.2.0/24"]
 }
@@ -56,7 +56,7 @@ resource "azurerm_subnet" "subnet" {
 resource "azurerm_network_interface" "nic" {
   name                = "example-nic"
   location            = azurerm_resource_group.resource_group.location
-  resource_group_name = zurerm_resource_group.resource_group.name
+  resource_group_name = azurerm_resource_group.resource_group.name
 
   ip_configuration {
     name                          = "internal"
@@ -67,7 +67,7 @@ resource "azurerm_network_interface" "nic" {
 
 resource "azurerm_linux_virtual_machine" "vm" {
   name                = var.solutionName-vm
-  resource_group_name = zurerm_resource_group.resource_group.name
+  resource_group_name = azurerm_resource_group.resource_group.name
   location            = azurerm_resource_group.resource_group.location
   size                = var.vmSize
   admin_username      = "admin"
