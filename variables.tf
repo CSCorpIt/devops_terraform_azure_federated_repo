@@ -24,8 +24,8 @@ variable "region" {
 }
 
 
-variable "resource_group_name" {
-  description = "The resource group name for the deployment."
+variable "solution_name" {
+  description = "The solution name"
   type        = string
 }
 
