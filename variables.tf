@@ -24,7 +24,7 @@ variable "region" {
 }
 
 
-variable "solution_name" {
+variable "solutioName" {
   description = "The solution name"
   type        = string
 }
