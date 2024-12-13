@@ -78,6 +78,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   admin_ssh_key {
     username   = "adminuser"
     public_key = var.TF_VAR_vmPublicKey
+  }  
 
   os_disk {
     caching              = "ReadWrite"
