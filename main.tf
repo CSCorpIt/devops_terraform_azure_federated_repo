@@ -66,7 +66,7 @@ resource "azurerm_network_interface" "nic" {
 }
 
 resource "azurerm_linux_virtual_machine" "vm" {
-  name                = "${var.TF_VAR_solutionName-vm}"
+  name                = var.TF_VAR_solutionName-vm
   resource_group_name = zurerm_resource_group.resource_group.name
   location            = azurerm_resource_group.resource_group.location
   size                = var.TF_VAR_vmSize
@@ -78,7 +78,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   admin_ssh_key {
     username   = "adminuser"
     public_key = var.TF_VAR_vmPublicKey
-  }  
+  }
 
   os_disk {
     caching              = "ReadWrite"
