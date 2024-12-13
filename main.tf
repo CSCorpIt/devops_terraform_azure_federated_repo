@@ -54,7 +54,7 @@ resource "azurerm_subnet" "subnet" {
 }
 
 resource "azurerm_network_interface" "nic" {
-  name                = "example-nic"
+  name                = "${var.solutionName}-vm-nic"
   location            = azurerm_resource_group.resource_group.location
   resource_group_name = azurerm_resource_group.resource_group.name
 
@@ -75,9 +75,11 @@ resource "azurerm_linux_virtual_machine" "vm" {
     azurerm_network_interface.nic.id,
   ]
 
-  admin_ssh_key {
-    username   = "adminuser"
-    public_key = var.vmPublicKey
+  resource "azurerm_ssh_public_key" "vm-ssh" {
+    name                = "vm-ssh"
+    resource_group_name = azurerm_resource_group.resource_group.name
+    location            = azurerm_resource_group.resource_group.location
+    public_key          = var.vmPublicKey
   }
 
   os_disk {
