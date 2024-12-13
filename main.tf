@@ -70,7 +70,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   resource_group_name = azurerm_resource_group.resource_group.name
   location            = azurerm_resource_group.resource_group.location
   size                = var.vmSize
-  admin_username      = "admin"
+  admin_username      = "cspower"
   network_interface_ids = [
     azurerm_network_interface.nic.id,
   ]
