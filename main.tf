@@ -35,12 +35,12 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "resource_group" {
-  name     = ${{var.TF_VAR_solutionName}}-rg
+  name     = "${var.TF_VAR_solutionName}-rg"
   location = "West Europe"
 }
 
 resource "azurerm_virtual_network" "vnet" {
-  name                = ${{var.TF_VAR_solutionName}}-vnet
+  name                = "${var.TF_VAR_solutionName}}-vnet"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.resource_group.location
   resource_group_name = azurerm_resource_group.resource_group.name
@@ -66,10 +66,10 @@ resource "azurerm_network_interface" "nic" {
 }
 
 resource "azurerm_linux_virtual_machine" "vm" {
-  name                = ${{var.TF_VAR_solutionName}}-vm
+  name                = "${var.TF_VAR_solutionName-vm}"
   resource_group_name = zurerm_resource_group.resource_group.name
   location            = azurerm_resource_group.resource_group.location
-  size                = ${{var.TF_VAR_vmSize}}
+  size                = var.TF_VAR_vmSize
   admin_username      = "admin"
   network_interface_ids = [
     azurerm_network_interface.nic.id,
@@ -77,7 +77,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
 
   admin_ssh_key {
     username   = "adminuser"
-    public_key = ${{var.TF_VAR_vmPublicKey}}
+    public_key = var.TF_VAR_vmPublicKey
 
   os_disk {
     caching              = "ReadWrite"

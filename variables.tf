@@ -29,6 +29,16 @@ variable "solution_name" {
   type        = string
 }
 
+variable "vmSize" {
+  description = "Vm Size"
+  type        = string
+}
+
+variable "vmPublicKey" {
+  description = "Vm's public ssh key"
+  type        = string
+}
+
 variable "azurerm_resource_group_name" {
   description = "The Terraform backend state resource group"
   type        = string
