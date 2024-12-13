@@ -11,7 +11,10 @@ on:
         description: 'VmSize'
         required: true
         type: string
-   
+    destroy:
+        description: "Set to true to destroy the infrastructure"
+        required: false
+        default: "false"
 
 permissions:
   id-token: write
@@ -61,6 +64,16 @@ jobs:
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
       run: terraform fmt -check
+
+    - name: Terraform Conditional Plan/Destroy
+      run: |
+        if [ "${{ github.event.inputs.destroy }}" == "true" ]; then
+          echo "Running Terraform Destroy"
+          terraform plan -destroy -auto-approve -input=false
+        else
+          echo "Running Terraform Plan"
+          terraform plan -auto-approve -input=false
+        fi  
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
