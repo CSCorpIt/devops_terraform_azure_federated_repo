@@ -75,11 +75,9 @@ resource "azurerm_linux_virtual_machine" "vm" {
     azurerm_network_interface.nic.id,
   ]
 
-  resource "azurerm_ssh_public_key" "vm-ssh" {
-    name                = "vm-ssh"
-    resource_group_name = azurerm_resource_group.resource_group.name
-    location            = azurerm_resource_group.resource_group.location
-    public_key          = var.vmPublicKey
+  admin_ssh_key {
+    username   = "cspower"
+    public_key = file("~/.ssh/id_rsa.pub")
   }
 
   os_disk {
