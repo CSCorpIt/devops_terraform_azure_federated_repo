@@ -69,7 +69,7 @@ jobs:
       run: |
         if [ "${{ github.event.inputs.destroy }}" == "true" ]; then
           echo "Running Terraform Destroy"
-          terraform plan -destroy -auto-approve -input=false
+          terraform plan -destroy
         else
           echo "Running Terraform Plan"
           terraform plan -auto-approve -input=false
