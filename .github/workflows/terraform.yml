@@ -72,7 +72,7 @@ jobs:
           terraform plan -destroy -input=false
         else
           echo "Running Terraform Plan"
-          terraform plan -auto-approve -input=false
+          terraform plan -input=false
         fi  
       env:
         TF_VAR_clientID: ${{ secrets.AZURE_CLIENT_ID }}
