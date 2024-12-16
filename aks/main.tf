@@ -148,7 +148,6 @@ resource "azurerm_kubernetes_cluster" "dev-aks" {
 
   network_profile {
     network_plugin = "azure" # Use Azure CNI
-    pod_cidr       = "10.254.1.0/24"
   }
 
   ingress_application_gateway {
