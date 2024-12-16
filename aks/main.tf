@@ -147,7 +147,7 @@ resource "azurerm_kubernetes_cluster" "dev-aks" {
   sku_tier            = "Free"
 
   ingress_application_gateway {
-    effective_gateway_id = azurerm_resource_group.example.id
+    gateway_id = azurerm_resource_group.example.id
   }
 
   default_node_pool {
