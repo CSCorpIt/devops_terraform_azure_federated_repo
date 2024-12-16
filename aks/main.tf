@@ -140,14 +140,14 @@ resource "azurerm_resource_group" "resource_group" {
 
 
 resource "azurerm_kubernetes_cluster" "dev-aks" {
-  name                        = "${var.solutionName}-dev-aks"
-  location                    = azurerm_resource_group.resource_group.location
-  resource_group_name         = azurerm_resource_group.resource_group.name
-  dns_prefix                  = "dev-aks"
-  sku_tier                    = "Free"
-  
+  name                = "${var.solutionName}-dev-aks"
+  location            = azurerm_resource_group.resource_group.location
+  resource_group_name = azurerm_resource_group.resource_group.name
+  dns_prefix          = "dev-aks"
+  sku_tier            = "Free"
+
   ingress_application_gateway {
-    effective_gateway_id =  azurerm_resource_group.example.id
+    effective_gateway_id = azurerm_resource_group.example.id
   }
 
   default_node_pool {
