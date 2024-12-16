@@ -50,13 +50,10 @@ jobs:
        echo "${{ secrets.AZURE_VM_PUB_SSH_KEY }}" > ~/.ssh/id_rsa.pub
        chmod 600 ~/.ssh/id_rsa.pub    
 
-    - name: Getting int the module folder
-      run: cd aks     
-        
-
+  
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      run: terraform init
+      run: terraform init aks/
       env:
         TF_VAR_clientID: ${{ secrets.AZURE_CLIENT_ID }}
         TF_VAR_tenantID: ${{ secrets.AZURE_TENANT_ID }}
@@ -73,10 +70,10 @@ jobs:
       run: |
         if [ "${{ github.event.inputs.destroy }}" == "true" ]; then
           echo "Running Terraform Destroy"
-          terraform plan -destroy -input=false
+          terraform plan aks/ -destroy -input=false
         else
           echo "Running Terraform Plan"
-          terraform plan -input=false
+          terraform plan aks/ -input=false
         fi  
       env:
         TF_VAR_clientID: ${{ secrets.AZURE_CLIENT_ID }}
@@ -91,10 +88,10 @@ jobs:
       run: |
        if [ "${{ github.event.inputs.destroy }}" == "true" ]; then
           echo "Running Terraform Destroy"
-          terraform apply -destroy -auto-approve -input=false
+          terraform apply aks/ -destroy -auto-approve -input=false
        else
           echo "Running Terraform Plan"
-          terraform apply -auto-approve -input=false
+          terraform apply aks/ -auto-approve -input=false
        fi  
       env:
           TF_VAR_clientID: ${{ secrets.AZURE_CLIENT_ID }}
