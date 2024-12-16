@@ -46,7 +46,7 @@ resource "azurerm_kubernetes_cluster" "dev-aks" {
   location            = azurerm_resource_group.resource_group.location
   resource_group_name = azurerm_resource_group.resource_group.name
   dns_prefix          = "dev-aks"
-  sku_tier            = "free"
+  sku_tier            = "Free"
 
   default_node_pool {
     name       = "default"
