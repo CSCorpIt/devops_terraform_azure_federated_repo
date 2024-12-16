@@ -72,7 +72,7 @@ locals {
   redirect_configuration_name    = "${azurerm_virtual_network.example.name}-rdrcfg"
 }
 
-resource "azurerm_application_gateway" "network" {
+resource "azurerm_application_gateway" "gw" {
   name                = "example-appgateway"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
@@ -147,7 +147,7 @@ resource "azurerm_kubernetes_cluster" "dev-aks" {
   sku_tier            = "Free"
 
   ingress_application_gateway {
-    gateway_id = azurerm_resource_group.example.id
+    gateway_id = azurerm_application_gateway.gw.id
   }
 
   default_node_pool {
