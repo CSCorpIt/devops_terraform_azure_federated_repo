@@ -91,7 +91,7 @@ jobs:
           terraform -chdir=aks apply -destroy -auto-approve -input=false
        else
           echo "Running Terraform Plan"
-          terraform -chdir=aks apply aks/ -auto-approve -input=false
+          terraform -chdir=aks apply -auto-approve -input=false
        fi  
       env:
           TF_VAR_clientID: ${{ secrets.AZURE_CLIENT_ID }}
