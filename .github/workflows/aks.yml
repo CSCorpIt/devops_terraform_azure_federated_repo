@@ -71,6 +71,7 @@ jobs:
 
     - name: Terraform Conditional Plan/Destroy
       run: |
+        cd aks 
         if [ "${{ github.event.inputs.destroy }}" == "true" ]; then
           echo "Running Terraform Destroy"
           terraform plan -destroy -input=false
@@ -89,6 +90,7 @@ jobs:
 
     - name: Terraform Conditional Apply/Destroy
       run: |
+       cd aks 
        if [ "${{ github.event.inputs.destroy }}" == "true" ]; then
           echo "Running Terraform Destroy"
           terraform apply -destroy -auto-approve -input=false
