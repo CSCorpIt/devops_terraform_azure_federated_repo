@@ -1,4 +1,4 @@
-name: 'AKS'
+name: 'Terraform'
 
 on: 
  workflow_dispatch:
@@ -49,7 +49,11 @@ jobs:
        mkdir -p ~/.ssh
        echo "${{ secrets.AZURE_VM_PUB_SSH_KEY }}" > ~/.ssh/id_rsa.pub
        chmod 600 ~/.ssh/id_rsa.pub    
-   
+
+    - name: Getting int the module folder
+      run: cd aks     
+        
+
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       run: terraform init
@@ -61,17 +65,12 @@ jobs:
         TF_VAR_vmSize: ${{ inputs.vmSize }}
         TF_VAR_vmPublicKey: ${{ secrets.AZURE_VM_PUB_SSH_KEY }}
 
-    
-    - name: Getting int the module folder
-      run: cd aks     
-    
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
       run: terraform fmt -check
 
     - name: Terraform Conditional Plan/Destroy
       run: |
-        cd aks 
         if [ "${{ github.event.inputs.destroy }}" == "true" ]; then
           echo "Running Terraform Destroy"
           terraform plan -destroy -input=false
@@ -90,7 +89,6 @@ jobs:
 
     - name: Terraform Conditional Apply/Destroy
       run: |
-       cd aks 
        if [ "${{ github.event.inputs.destroy }}" == "true" ]; then
           echo "Running Terraform Destroy"
           terraform apply -destroy -auto-approve -input=false
