@@ -1,0 +1,107 @@
+name: 'Terraform'
+
+on: 
+ workflow_dispatch:
+  inputs:
+    solutionName:
+        description: 'Solution Name'
+        required: true
+        type: string
+    vmSize:
+        description: 'VmSize'
+        required: true
+        type: string
+    destroy:
+        description: "Set to true to destroy the infrastructure"
+        required: false
+        default: "false"
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+    environment: dev
+
+    
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }} 
+        
+        
+    - name: Add SSH Key
+      run: |
+       mkdir -p ~/.ssh
+       echo "${{ secrets.AZURE_VM_PUB_SSH_KEY }}" > ~/.ssh/id_rsa.pub
+       chmod 600 ~/.ssh/id_rsa.pub    
+   
+    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    - name: Terraform Init
+      run: terraform init
+      env:
+        TF_VAR_clientID: ${{ secrets.AZURE_CLIENT_ID }}
+        TF_VAR_tenantID: ${{ secrets.AZURE_TENANT_ID }}
+        TF_VAR_subID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        TF_VAR_solutionName: ${{ inputs.solutionName }}
+        TF_VAR_vmSize: ${{ inputs.vmSize }}
+        TF_VAR_vmPublicKey: ${{ secrets.AZURE_VM_PUB_SSH_KEY }}
+
+    
+    - name: Getting int the module folder
+      run: cd aks     
+    
+    # Checks that all Terraform configuration files adhere to a canonical format
+    - name: Terraform Format
+      run: terraform fmt -check
+
+    - name: Terraform Conditional Plan/Destroy
+      run: |
+        if [ "${{ github.event.inputs.destroy }}" == "true" ]; then
+          echo "Running Terraform Destroy"
+          terraform plan -destroy -input=false
+        else
+          echo "Running Terraform Plan"
+          terraform plan -input=false
+        fi  
+      env:
+        TF_VAR_clientID: ${{ secrets.AZURE_CLIENT_ID }}
+        TF_VAR_tenantID: ${{ secrets.AZURE_TENANT_ID }}
+        TF_VAR_subID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        TF_VAR_solutionName: ${{ inputs.solutionName }}
+        TF_VAR_vmSize: ${{ inputs.vmSize }}
+        TF_VAR_vmPublicKey: ${{ secrets.AZURE_VM_PUB_SSH_KEY }}
+
+
+    - name: Terraform Conditional Apply/Destroy
+      run: |
+       if [ "${{ github.event.inputs.destroy }}" == "true" ]; then
+          echo "Running Terraform Destroy"
+          terraform apply -destroy -auto-approve -input=false
+       else
+          echo "Running Terraform Plan"
+          terraform apply -auto-approve -input=false
+       fi  
+      env:
+          TF_VAR_clientID: ${{ secrets.AZURE_CLIENT_ID }}
+          TF_VAR_tenantID: ${{ secrets.AZURE_TENANT_ID }}
+          TF_VAR_subID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          TF_VAR_solutionName: ${{ inputs.solutionName }}
+          TF_VAR_vmSize: ${{ inputs.vmSize }}
+          TF_VAR_vmPublicKey: ${{ secrets.AZURE_VM_PUB_SSH_KEY }}    
+
+  

@@ -24,8 +24,18 @@ variable "region" {
 }
 
 
-variable "resource_group_name" {
-  description = "The resource group name for the deployment."
+variable "solutionName" {
+  description = "The solution name"
+  type        = string
+}
+
+variable "vmSize" {
+  description = "Vm Size"
+  type        = string
+}
+
+variable "vmPublicKey" {
+  description = "Vm's public ssh key"
   type        = string
 }
 
