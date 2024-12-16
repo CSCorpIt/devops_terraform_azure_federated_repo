@@ -168,7 +168,7 @@ resource "azurerm_kubernetes_cluster" "dev-aks" {
     Environment = "Dev"
   }
 
-  node_resource_group = azurerm_resource_group.resource_group.name
+  node_resource_group = "aks-resource-rg"
 }
 
 output "client_certificate" {
