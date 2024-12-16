@@ -9,7 +9,7 @@ terraform {
 
 
   backend "azurerm" {
-    key                  = "terra-state"
+    key                  = "terra-state-aks"
     resource_group_name  = "DefaultResourceGroup-EUS"
     storage_account_name = "terraformstagh"
     container_name       = "terradev"
