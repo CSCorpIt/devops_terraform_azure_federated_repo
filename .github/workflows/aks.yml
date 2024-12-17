@@ -53,7 +53,7 @@ jobs:
   
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      run: terraform -chdir=aks -backend-config="key=${{inputs.solutionName}}_state" init
+      run: terraform -chdir=aks  init -backend-config="key=${{inputs.solutionName}}_state"
       env:
         TF_VAR_clientID: ${{ secrets.AZURE_CLIENT_ID }}
         TF_VAR_tenantID: ${{ secrets.AZURE_TENANT_ID }}
