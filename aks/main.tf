@@ -48,15 +48,11 @@ resource "azurerm_kubernetes_cluster" "dev-aks" {
   dns_prefix          = "dev-aks"
   sku_tier            = "Free"
 
-  network_profile {
-    network_plugin = "azure" # Use Azure CNI
-  }
-
-
+ 
   default_node_pool {
     name       = "default"
     node_count = 1
-    vm_size    = "Standard_D2_v2"
+    vm_size    = "Standard_DS1_v2"
   }
 
   identity {
