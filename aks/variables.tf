@@ -29,16 +29,6 @@ variable "solutionName" {
   type        = string
 }
 
-variable "vmSize" {
-  description = "Vm Size"
-  type        = string
-}
-
-variable "vmPublicKey" {
-  description = "Vm's public ssh key"
-  type        = string
-}
-
 variable "azurerm_resource_group_name" {
   description = "The Terraform backend state resource group"
   type        = string
@@ -48,17 +38,14 @@ variable "azurerm_resource_group_name" {
 variable "azurerm_key" {
   description = "The Terraform backend state key."
   type        = string
-  default     = "snackingnextgen-dev-comp-eastus2.tfstate"
 }
 
 variable "azurerm_storage_account_name" {
   description = "The name of the Azure storage account for the backend."
   type        = string
-  default     = "oddatfstateeus2devsa"
 }
 
 variable "azurerm_container_name" {
   description = "The name of the storage container for the backend."
   type        = string
-  default     = "resource-tfstate"
 }
