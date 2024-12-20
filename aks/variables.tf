@@ -28,24 +28,3 @@ variable "solutionName" {
   description = "The solution name"
   type        = string
 }
-
-variable "azurerm_resource_group_name" {
-  description = "The Terraform backend state resource group"
-  type        = string
-  default     = "ODDA-TFSTATE-DEV-RG"
-}
-
-variable "azurerm_key" {
-  description = "The Terraform backend state key."
-  type        = string
-}
-
-variable "azurerm_storage_account_name" {
-  description = "The name of the Azure storage account for the backend."
-  type        = string
-}
-
-variable "azurerm_container_name" {
-  description = "The name of the storage container for the backend."
-  type        = string
-}
