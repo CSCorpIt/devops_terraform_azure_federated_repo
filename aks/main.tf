@@ -36,7 +36,7 @@ provider "azurerm" {
 
 
 resource "azurerm_resource_group" "resource_group" {
-  name     = "${var.solutionName-}-aks-rg"
+  name     = "${var.solutionName}-aks-rg"
   location = "East US"
 }
 
@@ -63,7 +63,7 @@ resource "azurerm_kubernetes_cluster" "dev-aks" {
     Environment = "Dev"
   }
 
-  node_resource_group = "${var.solutionName-}-aks-resources-rg"
+  node_resource_group = "${var.solutionName}-aks-resources-rg"
 }
 
 output "client_certificate" {
