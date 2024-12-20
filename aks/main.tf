@@ -48,7 +48,7 @@ resource "azurerm_kubernetes_cluster" "dev-aks" {
   dns_prefix          = "dev-aks"
   sku_tier            = "Free"
 
- 
+
   default_node_pool {
     name       = "default"
     node_count = 1
